@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Registro de usuário
+{% endblock %}
+
+{% block styles %}
+  {{ super() }}
+  <link rel="stylesheet" href="{{url_for('auth.static', filename='css/registro.css')}}">
+{% endblock styles %}
+
+{% block content %}
+  <form method="POST" action="" class="form-registro">
+    <h1>Formulário de Registro</h1>
+    {{ form.hidden_tag() }}
+
+    <div>
+      {{ form.usuario.label }}
+      {{ form.usuario() }}
+
+      {% if form.usuario.errors %}
+        {% for erro in form.usuario.errors %}
+          <div>
+            <span>{{ erro }}</span>
+          </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+    <div>
+      {{ form.nome_completo.label }}
+      {{ form.nome_completo() }}
+      {% if form.nome_completo.errors %}
+        {% for erro in form.nome_completo.errors %}
+          <div>
+            <span>{{ erro }}</span>
+          </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+    <div>
+      {{ form.email.label }}
+      {{ form.email() }}
+      {% if form.email.errors %}
+        {% for erro in form.email.errors %}
+          <div>
+            <span>{{ erro }}</span>
+          </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+    <div>
+      {{ form.confirmar_email.label }}
+      {{ form.confirmar_email() }}
+      {% if form.confirmar_email.errors %}
+        {% for erro in form.confirmar_email.errors %}
+          <div>
+            <span>{{ erro }}</span>
+          </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+    <div>
+      {{ form.senha.label }}
+      {{ form.senha() }}
+      {% if form.senha.errors %}
+        {% for erro in form.senha.errors %}
+          <div>
+            <span>{{ erro }}</span>
+          </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+    <div>
+      {{ form.confirmar_senha.label }}
+      {{ form.confirmar_senha() }}
+      {% if form.confirmar_senha.errors %}
+        {% for erro in form.confirmar_senha.errors %}
+          <div>
+            <span>{{ erro }}</span>
+          </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+    <div>{{ form.enviar() }}</div>
+  </form>
+{% endblock %}
