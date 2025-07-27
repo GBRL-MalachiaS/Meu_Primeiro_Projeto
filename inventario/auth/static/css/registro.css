@@ -3,6 +3,21 @@
     padding: 0;
 }
 
-form{
+.form-registro{
+    width: 500px;
+    height: 500px;
     border: 2px black solid;
+    margin: 0 auto;
+}
+
+.form-registro div{
+    margin: 15px;
+    width: 25vh;
+    display: flex;
+    align-items: center;
+}
+
+.form-label{
+    display: flex;
+    size: 40px;
 }

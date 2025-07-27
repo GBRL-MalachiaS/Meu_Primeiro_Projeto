@@ -16,7 +16,7 @@
 
     <div>
       {{ form.usuario.label }}
-      {{ form.usuario() }}
+      {{ form.usuario(class_="form-label") }}
 
       {% if form.usuario.errors %}
         {% for erro in form.usuario.errors %}
@@ -28,7 +28,7 @@
     </div>
     <div>
       {{ form.nome_completo.label }}
-      {{ form.nome_completo() }}
+      {{ form.nome_completo(class_="form-label") }}
       {% if form.nome_completo.errors %}
         {% for erro in form.nome_completo.errors %}
           <div>
@@ -39,7 +39,7 @@
     </div>
     <div>
       {{ form.email.label }}
-      {{ form.email() }}
+      {{ form.email(class_="form-label") }}
       {% if form.email.errors %}
         {% for erro in form.email.errors %}
           <div>
@@ -50,7 +50,7 @@
     </div>
     <div>
       {{ form.confirmar_email.label }}
-      {{ form.confirmar_email() }}
+      {{ form.confirmar_email(class_="form-label") }}
       {% if form.confirmar_email.errors %}
         {% for erro in form.confirmar_email.errors %}
           <div>
@@ -61,7 +61,7 @@
     </div>
     <div>
       {{ form.senha.label }}
-      {{ form.senha() }}
+      {{ form.senha(class_="form-label") }}
       {% if form.senha.errors %}
         {% for erro in form.senha.errors %}
           <div>
@@ -72,7 +72,7 @@
     </div>
     <div>
       {{ form.confirmar_senha.label }}
-      {{ form.confirmar_senha() }}
+      {{ form.confirmar_senha(class_="form-label") }}
       {% if form.confirmar_senha.errors %}
         {% for erro in form.confirmar_senha.errors %}
           <div>
@@ -81,6 +81,6 @@
         {% endfor %}
       {% endif %}
     </div>
-    <div>{{ form.enviar() }}</div>
+    <div>{{ form.enviar(class_="form-label") }}</div>
   </form>
 {% endblock %}
