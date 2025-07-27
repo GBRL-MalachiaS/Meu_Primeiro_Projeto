@@ -16,6 +16,10 @@ class FormLogin(FlaskForm):
         DataRequired(message='Campo usuarío é obrigatório')])
     senha = PasswordField('Senha', validators=[
         DataRequired(message='Campo senha é obrigatório')])
+    usuario = StringField('Usuario', validators=[
+        DataRequired(message='Campo usuarío é obrigatório')])
+    senha = PasswordField('Senha', validators=[
+        DataRequired(message='Campo senha é obrigatório')])
     enviar = SubmitField('Fazer Login')
 
 

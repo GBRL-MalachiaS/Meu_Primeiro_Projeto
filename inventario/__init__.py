@@ -8,13 +8,15 @@ from inventario.config import Config
 db = SQLAlchemy()
 bcrypt = Bcrypt()
 login_manager = LoginManager()
-login_manager.login_view = 'usuarios.login' 
+login_manager.login_view = 'usuarios.login'
 login_manager.login_message_category = 'info'
+
 
 @login_manager.user_loader
 def load_user(user_id):
     from inventario.models import Usuario
     return Usuario.query.get(int(user_id))
+
 
 def create_app(config_class=Config):
     app = Flask(__name__)
@@ -29,7 +31,7 @@ def create_app(config_class=Config):
     from inventario.main.routes import main as main_blueprint
     from inventario.auth.routes import auth as auth_blueprint
 
-    #Registro dos pacotes Blueprint
+    # Registro dos pacotes Blueprint
     app.register_blueprint(main_blueprint)
     app.register_blueprint(auth_blueprint)
 
