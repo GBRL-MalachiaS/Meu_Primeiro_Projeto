@@ -1,5 +1,5 @@
 from flask import render_template, Blueprint, url_for, redirect, flash
-from flask_login import login_user, current_user, logout_user
+from flask_login import login_user, current_user, logout_user, login_required
 from inventario import db, bcrypt
 from inventario.models import Usuario
 from inventario.auth.forms import FormLogin, FormRegistro
@@ -32,6 +32,7 @@ def login():
 
 
 @auth.route('/registro', methods=['GET', 'POST'])
+@login_required
 def registro():
     form = FormRegistro()
 
@@ -53,6 +54,10 @@ def registro():
 
 
 @auth.route('/logout')
+@login_required
 def logout():
-    # Logic for logging out the user
+    logout_user()
+    flash('Você foi desconectado com sucesso.', 'info')
     return redirect(url_for('auth.login'))
+
+
