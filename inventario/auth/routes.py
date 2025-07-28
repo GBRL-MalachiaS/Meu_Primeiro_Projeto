@@ -31,7 +31,7 @@ def login():
     return render_template('login.html', form=form)
 
 
-@auth.route('/registro')
+@auth.route('/registro', methods=['GET', 'POST'])
 def registro():
     form = FormRegistro()
 

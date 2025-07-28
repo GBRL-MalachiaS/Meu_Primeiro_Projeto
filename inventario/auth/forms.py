@@ -48,7 +48,7 @@ class FormRegistro(FlaskForm):
     # Valida se o usuário ja foi cadastrado
     def validate_usuario(self, usuario):
 
-        usuario_existe = Usuario.query.filter_by(ususario=usuario.data).first()
+        usuario_existe = Usuario.query.filter_by(usuario=usuario.data).first()
         if usuario_existe:
             raise ValidationError(
                 'Este nome de usuário já está em uso. Por favor, escolha outro.')
