@@ -21,18 +21,18 @@ def login():
     if form.validate_on_submit():
         usuario = Usuario.query.filter_by(usuario=form.usuario.data).first()
 
-        if usuario and bcrypt.check_password_hash(usuario.senha, form.senha.data):
+        if usuario and bcrypt.check_password_hash(usuario.password, form.senha.data):
             login_user(usuario, remember=form.lembrar_dados.data)
             flash()
             return redirect(url_for('main.home'))
         else:
             flash('Falha ao efetuar login. Valide seu usuário e senha', 'danger')
+            return render_template('login.html', form=form)
 
     return render_template('login.html', form=form)
 
 
 @auth.route('/registro', methods=['GET', 'POST'])
-@login_required
 def registro():
     form = FormRegistro()
 
@@ -61,3 +61,7 @@ def logout():
     return redirect(url_for('auth.login'))
 
 
+@auth.route('/alterarsenha')
+def alterar_senha():
+    
+    return render_template('alterarsenha.html')

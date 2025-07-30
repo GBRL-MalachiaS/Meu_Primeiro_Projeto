@@ -39,7 +39,7 @@ def create_app(config_class=Config):
     from inventario.auth.routes import auth as auth_blueprint
 
     # Registro dos pacotes Blueprint
-    app.register_blueprint(main_blueprint, url_prefix='/main')
+    app.register_blueprint(main_blueprint)
     app.register_blueprint(auth_blueprint, url_prefix='/auth')
 
     return app

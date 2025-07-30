@@ -9,6 +9,17 @@
     {{ form.hidden_tag() }}
 
     <div>
+      {# Início da seção de mensagens flash #}
+      {% with messages=get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <div class="flashes">
+            {% for category, message in messages %}
+              <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+      {# Fim da seção de mensagens flash #}
       {{ form.usuario.label }}
       {{ form.usuario() }}
       {% if form.usuario.errors %}
@@ -30,8 +41,6 @@
         {% endfor %}
       {% endif %}
     </div>
-    <div>
-        {{form.enviar()}}
-    </div>
+    <div>{{ form.enviar() }}</div>
   </form>
 {% endblock %}
