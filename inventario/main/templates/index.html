@@ -1,20 +1,9 @@
-{% extends 'base.html' %}
+{% extends 'base_main.html' %}
 
 {% block style %}
 
 {% endblock %}
 
-{% block header %}
-  <nav>
-    <ul>
-      <li>
-        <a href="{{ url_for('auth.registro') }}">Cadastro</a>
-      </li>
-    </ul>
-  </nav>
-  <a href="{{ url_for('auth.logout') }}">Sair</a>
-{% endblock %}
-
 {% block content %}
-
+<h1> Area Logada </h1>
 {% endblock %}

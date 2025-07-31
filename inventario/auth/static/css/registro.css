@@ -1,16 +1,11 @@
-*{
+html, body{
     margin: 0;
     padding: 0;
 }
 
 /* Estilo geral para o container do formulário */
 .form-registro {
-  max-width: 500px;
-  margin: 40px auto; /* Centraliza o formulário na página */
-  padding: 20px;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  width: 100%;
 }
 
 /* Estilo para agrupar label e input */

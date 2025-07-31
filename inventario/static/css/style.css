@@ -1,0 +1,24 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.container{
+    display: flex;
+    border: black 5px solid;
+}
+
+.container header{
+    width: 10%;
+    height: 850px;
+    border: orange 5px solid;
+
+}
+
+.container main{
+    width: 90%;
+    border: greenyellow 5px solid;
+}
+
+footer{
+    border: blue 5px solid;
+}

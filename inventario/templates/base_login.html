@@ -14,19 +14,12 @@
   </head>
 
   <body>
-    <header>
-      {% block header %}
-      
-      {% endblock header %}    
-    </header>
     <main>
       {% block content %}
 
       {% endblock %}
     </main>
-    <footer>
-      <p>&copy; Desenvolvido por GBLMalachias</p>
-      <p></p>
-    </footer>
+
+    {% include "partials/_footer.html" %}
   </body>
 </html>

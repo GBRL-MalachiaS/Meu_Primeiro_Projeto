@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, EmailField
+from wtforms import StringField, PasswordField, SubmitField, EmailField, BooleanField
 from wtforms.validators import DataRequired, Email, Length, ValidationError, EqualTo
 from .validators import validate_email,validate_senha,validate_usuario
 
@@ -9,6 +9,7 @@ class FormLogin(FlaskForm):
         DataRequired(message='Campo usuarío é obrigatório')])
     senha = PasswordField('Senha', validators=[
         DataRequired(message='Campo senha é obrigatório')])
+    lembrar_dados = BooleanField('Lembrar de mim')
     enviar = SubmitField('Fazer Login')
 
 
@@ -28,6 +29,13 @@ class FormRegistro(FlaskForm):
         Email(message='Digite um e-mail valido'),
         validate_email,
         ])
+    
+    confirmar_email = EmailField('E-mail', validators=[
+        DataRequired(message='Por favor, ensira seu e-mail'),
+        Email(message='Digite um e-mail valido'), 
+        EqualTo('email')
+        ])
+
 
     senha = PasswordField('Senha', validators=[
         DataRequired(message='Campo Obrigatório'),

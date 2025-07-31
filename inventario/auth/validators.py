@@ -31,4 +31,5 @@ def validate_senha(self, senha):
     senha_texto = senha.data
 
     if not re.search(r'[^A-Za-z0-9]', senha_texto):
+        
         raise ValidationError('A senha deve conter um caractere especial!')

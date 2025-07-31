@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base_login.html' %}
 
 {% block title %}
   Login
@@ -41,6 +41,8 @@
         {% endfor %}
       {% endif %}
     </div>
+    <div>{{ form.lembrar_dados(class_='form-chek-input') }}
+      {{ form.lembrar_dados.label(class_='form-check-label') }}</div>
     <div>{{ form.enviar() }}</div>
   </form>
 {% endblock %}
