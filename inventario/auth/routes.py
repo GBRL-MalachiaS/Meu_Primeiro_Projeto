@@ -23,7 +23,6 @@ def login():
 
         if usuario and bcrypt.check_password_hash(usuario.password, form.senha.data):
             login_user(usuario, remember=form.lembrar_dados.data)
-            flash('Usuario logado')
             return redirect(url_for('main.home'))
         else:
             flash('Falha ao efetuar login. Valide seu usuário e senha', 'danger')

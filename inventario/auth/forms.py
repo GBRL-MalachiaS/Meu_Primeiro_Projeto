@@ -30,7 +30,7 @@ class FormRegistro(FlaskForm):
         validate_email,
         ])
     
-    confirmar_email = EmailField('E-mail', validators=[
+    confirmar_email = EmailField('Confirmar E-mail', validators=[
         DataRequired(message='Por favor, ensira seu e-mail'),
         Email(message='Digite um e-mail valido'), 
         EqualTo('email')

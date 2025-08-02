@@ -1,36 +1,88 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-  <head>
-    <title>
-      {% block title %}
-
-      {% endblock %}
-    </title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main-style.css') }}">
+    <title>{% block title %} {% endblock %} - Meu Projeto</title>
     {% block styles %}
-      <link href="{{ url_for('static', filename='css/main-style.css') }}" rel="stylesheet" />
     {% endblock %}
-  </head>
-
-  <body>
+</head>
+<body>
     <div class="container">
-    <header>
-        <nav>
-            <ul>
-                <li><a href="{{url_for('auth.registro')}}">Cadastros</a></li>
-                <li></li>
-                <li></li>
-            </ul>
-        </nav>
-        <p><a href="{{url_for('auth.logout')}}">Logout</a></p>
-    </header>
-    <main>
-      {% block content %}
+        <aside class="sidebar-menu">
+            <nav>
+                <ul>
+                  <li class="has-submenu">
+                        <a href="#">Dashboard<span class="arrow">▼</span></a>
+                        <ul class="submenu">
+                            <li><a href="#">Linhas</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="#">Invetarios <span class="arrow">▼</span></a>
+                        <ul class="submenu">
+                            <li><a href="#">Notebooks</a></li>
+                            <li><a href="#">Linhas</a></li>
+                        </ul>
+                    </li>
 
-      {% endblock %}
-    </main>
+                    <li class="has-submenu">
+                        <a href="#">Relatórios <span class="arrow">▼</span></a>
+                        <ul class="submenu">
+                            <li><a href="#">Vendas</a></li>
+                            <li><a href="#">Estoque</a></li>
+                            <li><a href="#">Usuários</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="has-submenu">
+                        <a href="#">Configurações <span class="arrow">▼</span></a>
+                        <ul class="submenu">
+                            <li><a href="{{url_for('auth.registro')}}">Cadastro de Usuário</a></li>
+                            <li><a href="#">Segurança</a></li>
+                            <li><a href="#">Integrações</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <p><a href="{{ url_for('auth.logout') }}" class="logout-link">Sair</a></p>
+        </aside>
+
+        <main class="main-content">
+            {% block content %}
+            {% endblock %}
+        </main>
     </div>
-    {% include "partials/_footer.html" %}
-  </body>
+
+    {% include 'partials/_footer.html' %}
+
+    {% block scripts %}
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Seleciona todos os itens de menu que têm um sub-menu
+        const submenuItems = document.querySelectorAll('.sidebar-menu .has-submenu > a');
+
+        submenuItems.forEach(item => {
+          item.addEventListener('click', function(event) {
+            // Previne a navegação padrão do link
+            event.preventDefault();
+
+            const parentLi = this.parentElement;
+
+            // Fecha outros sub-menus abertos (comportamento de acordeão)
+            document.querySelectorAll('.sidebar-menu .has-submenu').forEach(otherLi => {
+              if (otherLi !== parentLi) {
+                otherLi.classList.remove('active');
+              }
+            });
+
+            // Adiciona ou remove a classe 'active' do item clicado
+            parentLi.classList.toggle('active');
+          });
+        });
+      });
+    </script>
+    {% endblock %}
+</body>
 </html>

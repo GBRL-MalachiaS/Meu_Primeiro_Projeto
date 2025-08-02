@@ -1,11 +1,70 @@
-*{
-    margin: 0;
-    padding: 0;
+/* =================================================================
+   ARQUIVO: login-style.css
+   DESCRIÇÃO: Estilo principal para todas as páginas de autenticação
+              Login
+   ================================================================= */
+
+/* 1. Reset e Padrões Globais */
+html {
+  box-sizing: border-box;
 }
 
-
-
-main{
-    border: 5px solid blue;
-    height: 90vh;
+*, *::before, *::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
 }
+
+/* 2. Layout "Sticky Footer" com Flexbox */
+body {
+  /* O body ocupa no mínimo 100% da altura da tela */
+  min-height: 100vh;
+  /* Transforma o body em um container flexível */
+  display: flex;
+  /* Organiza os filhos (main e footer) em coluna */
+  flex-direction: column;
+
+  /* Estilos de fonte e fundo padrão */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #f0f2f5;
+  color: #333;
+}
+
+/* 3. Conteúdo Principal */
+.main-content {
+  /* MÁGICA: O 'flex: 1' faz o <main> crescer para ocupar todo o espaço
+     vertical disponível, empurrando o footer para o final da tela. */
+  flex: 1;
+
+  /* Centraliza o formulário (seu filho) na tela */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 0; /* Espaçamento para telas pequenas */
+}
+
+/* 4. Rodapé */
+.site-footer {
+  /* Impede que o footer encolha */
+  flex-shrink: 0;
+  text-align: center;
+  padding: 1.5rem;
+  background-color: #ffffff;
+  border-top: 1px solid #dee2e6;
+  font-size: 0.9em;
+  color: #6c757d;
+}
+
+.site-footer a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  text-decoration: underline;
+}
+
+/* Os estilos do formulário em si (como o card, inputs, botões)
+   devem estar nos arquivos de cada página (login.css, registro.css)
+   ou em um arquivo único como "auth-form.css" para não misturar
+   layout com componentes. */

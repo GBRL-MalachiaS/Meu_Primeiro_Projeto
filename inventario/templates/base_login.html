@@ -1,25 +1,28 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-  <head>
-    <title>
-      {% block title %}
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-      {% endblock %}
-    </title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="{{ url_for('auth.static', filename='css/login-style.css') }}">
+
+    <title>{% block title %} {% endblock %} - Meu Projeto</title>
+
     {% block styles %}
-      <link href="{{ url_for('static', filename='css/login-style.css') }}" rel="stylesheet" />
+    {# Bloco para estilos adicionais específicos de uma página, se necessário #}
     {% endblock %}
-  </head>
+</head>
+<body class="page-{% block page_class %}{% endblock %}">
 
-  <body>
-    <main>
-      {% block content %}
-
-      {% endblock %}
+    <main class="main-content">
+        {% block content %}
+        {% endblock %}
     </main>
 
-    {% include "partials/_footer.html" %}
-  </body>
+    {% include 'partials/_footer.html' %}
+
+    {% block scripts %}
+    {# Bloco para scripts, se necessário #}
+    {% endblock %}
+</body>
 </html>

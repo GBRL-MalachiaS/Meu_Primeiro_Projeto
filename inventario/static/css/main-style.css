@@ -1,20 +1,155 @@
-*{
-    margin: 0;
-    padding: 0;
-}
-.container{
-    display: flex;
-    border: black 5px solid;
-}
+/* =================================================================
+   ARQUIVO: main-style.css
+   DESCRIÇÃO: Estilo principal para a aplicação (layout com sidebar)
+   ================================================================= */
 
-.container header{
-    width: 10%;
-    height: 850px;
-    border: orange 5px solid;
-
+/* 1. Reset e Padrões Globais */
+html {
+  box-sizing: border-box;
 }
 
-.container main{
-    width: 90%;
-    border: greenyellow 5px solid;
+*, *::before, *::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+body, html {
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #f8f9fa;
+  color: #212529;
+}
+
+/* 2. Layout Principal com Flexbox */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container {
+  display: flex;
+  flex: 1;
+}
+
+/* 3. Barra Lateral (Sidebar) */
+.sidebar-menu {
+  flex: 0 0 250px;
+  background-color: #212529;
+  color: #fff;
+  padding: 1.5rem 1rem; /* Ajuste no padding lateral */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sidebar-menu nav ul {
+  list-style: none;
+}
+
+.sidebar-menu nav ul li a {
+  color: #adb5bd;
+  text-decoration: none;
+  display: flex; /* Alinha o texto e a seta */
+  justify-content: space-between; /* Coloca a seta na direita */
+  align-items: center;
+  padding: 0.8rem 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 5px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+/* Itens que não tem sub-menu não precisam de espaço extra */
+.sidebar-menu nav ul li:not(.has-submenu) a {
+  justify-content: flex-start;
+}
+
+
+.sidebar-menu nav ul li a:hover {
+  background-color: #495057;
+  color: #fff;
+}
+
+/* --- ESTILOS DO SUBMENU (NOVO) --- */
+
+/* Esconde o sub-menu por padrão */
+.submenu {
+  display: none;
+  list-style: none;
+  padding-left: 1rem; /* Indentação para os itens do sub-menu */
+  margin-top: 0.5rem;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+}
+
+/* Estilo dos links do sub-menu */
+.submenu li a {
+  padding: 0.6rem 1rem;
+  font-size: 0.9em;
+  color: #ced4da;
+}
+
+/* Quando o item pai tem a classe 'active', mostra o sub-menu */
+.has-submenu.active > .submenu {
+  display: block;
+  max-height: 500px; /* Altura máxima para a animação */
+}
+
+/* Seta indicadora */
+.arrow {
+  font-size: 0.7em;
+  transition: transform 0.3s ease;
+}
+
+/* Gira a seta quando o menu está ativo/aberto */
+.has-submenu.active > a .arrow {
+  transform: rotate(180deg);
+}
+
+/* --- FIM DOS ESTILOS DO SUBMENU --- */
+
+
+.sidebar-menu .logout-link {
+  color: #dc3545;
+  text-decoration: none;
+  display: block;
+  padding: 0.8rem 1rem;
+  background-color: rgba(220, 53, 69, 0.1);
+  border-radius: 5px;
+  text-align: center;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.sidebar-menu .logout-link:hover {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+/* 4. Área de Conteúdo Principal */
+.main-content {
+  flex-grow: 1;
+  padding: 2.5rem;
+  overflow-y: auto;
+}
+
+/* 5. Rodapé */
+.site-footer {
+  text-align: center;
+  padding: 1.5rem;
+  background-color: #ffffff;
+  border-top: 1px solid #dee2e6;
+  font-size: 0.9em;
+  color: #6c757d;
+  flex-shrink: 0;
+}
+
+.site-footer a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  text-decoration: underline;
 }

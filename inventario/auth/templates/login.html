@@ -4,53 +4,63 @@
   Login
 {% endblock %}
 
-{% block styles %}
+{% block page_class %}
+  login
+{% endblock %} {% block styles %}
   {{ super() }}
   <link rel="stylesheet" href="{{ url_for('auth.static', filename='css/login.css') }}" />
 {% endblock %}
 
 {% block content %}
-  <form method="POST" action="" class="form-login">
+  <form method="POST" action="" class="auth-form">
     {{ form.hidden_tag() }}
-    <div class="container-login">
-      <div class="container-label">
-        {# Início da seção de mensagens flash #}
-        {% with messages=get_flashed_messages(with_categories=true) %}
-          {% if messages %}
-            <div class="flashes">
-              {% for category, message in messages %}
-                <div class="alert alert-{{ category }}">{{ message }}</div>
-              {% endfor %}
-            </div>
-          {% endif %}
-        {% endwith %}
-        {# Fim da seção de mensagens flash #}
+
+    <div class="auth-container">
+      {# Seção de mensagens flash para mostrar erros ou sucessos #}
+      {% with messages=get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <div class="flashes">
+            {% for category, message in messages %}
+              <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+
+      {# Campo de Usuário #}
+      <div class="form-group">
         {{ form.usuario.label(class_='form-label') }}
-        {{ form.usuario(class_='form-control') }}
+        {{ form.usuario(class_='form-control', placeholder='Digite seu e-mail') }}
         {% if form.usuario.errors %}
           {% for erro in form.usuario.errors %}
-            <div>
+            <div class="error-message">
               <span>{{ erro }}</span>
             </div>
           {% endfor %}
         {% endif %}
       </div>
-      <div  class="container-label">
+
+      {# Campo de Senha #}
+      <div class="form-group">
         {{ form.senha.label(class_='form-label') }}
-        {{ form.senha(class_='form-control') }}
+        {{ form.senha(class_='form-control', placeholder='Digite sua senha') }}
         {% if form.senha.errors %}
           {% for erro in form.senha.errors %}
-            <div>
+            <div class="error-message">
               <span>{{ erro }}</span>
             </div>
           {% endfor %}
         {% endif %}
       </div>
+
+      {# Checkbox "Lembrar-me" #}
       <div class="container-checkbox">
-        {{ form.lembrar_dados(class_='form-chek-input') }}
+        {{ form.lembrar_dados(class_='form-check-input') }} {# <--- CORRIGIDO #}
         {{ form.lembrar_dados.label(class_='form-check-label') }}
       </div>
-      <div class="btn">{{ form.enviar() }}</div>
+
+      {# Botão de Envio #}
+      <div class="btn">{{ form.enviar(class_='btn-primary') }}</div>
     </div>
   </form>
 {% endblock %}
